@@ -7,13 +7,17 @@ require_once '../src/init.php';
 $request = str_replace($config['urls']['baseUrl'], '', $_SERVER['REQUEST_URI']);
 $request = strtok($request, '?');
 
+// Luodaan uusi Plates-olio ja kytketään se sovelluksen sivupohjiin
+$templates = new League\Plates\Engine('../src/view');
+
+
 // selvitetään mitä sivua on kutsuttu ja suoritetaan vastaava käsittelijä
 if($request === '/' || $request === '/kaikki') {
-    echo '<h1>Kaikki talkoot</h1>';
+    echo $templates->render('kaikki');
 } else if ($request === '/yksi') {
-    echo '<h1>Yksittäisen talkoo tapahtuman tiedot</h1>';
+    echo $templates->render('yksi');
 } else {
-    echo '<h1>Pyydettyä sivua ei löytynyt!</h1>';
+    echo $templates->render('notfound');
 }
 ?>
 
