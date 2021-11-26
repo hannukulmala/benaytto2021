@@ -12,10 +12,12 @@ $templates = new League\Plates\Engine(TEMPLATE_DIR);
 
 
 // selvitetään mitä sivua on kutsuttu ja suoritetaan vastaava käsittelijä
-if($request === '/' || $request === '/kaikki') {
-    echo $templates->render('kaikki');
-} else if ($request === '/yksi') {
-    echo $templates->render('yksi');
+if($request === '/' || $request === '/tapahtumat') {
+    require_once MODEL_DIR . 'tapahtuma.php';
+    $tapahtumat = haeTapahtumat();
+    echo $templates->render('tapahtumat', ['tapahtumat' => $tapahtumat]);
+} else if ($request === '/tapahtuma') {
+    echo $templates->render('tapahtuma');
 } else {
     echo $templates->render('notfound');
 }
