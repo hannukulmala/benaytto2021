@@ -6,7 +6,7 @@
     </head>
     <body>
         <header>
-            <h1>Frisbeegolfseura</h1>
+            <h1><a href="<?=BASEURL?>">Frisbeegolfseura</a></h1>
         </header>
         <section>
             <?=$this->section('content')?>
