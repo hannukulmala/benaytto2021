@@ -25,16 +25,6 @@ function lisaaTili($formdata) {
     }
   }
 
-  // Tarkistetaan, että discord-tunnus on määritelty ja se on
-  // muodossa tunnus#0000.
-  if (!isset($formdata['discord']) || !$formdata['discord']) {
-    $error['discord'] = "Anna discord-tunnuksesi muodossa tunnus#0000.";
-  } else {
-    if (!preg_match("/^.+#\d{4}$/",$formdata['discord'])) {
-      $error['discord'] = "Discord-tunnuksesi muoto on virheellinen.";
-    }
-  }
-
   // Tarkistetaan, että sähköpostiosoite on määritelty ja se on
   // oikeassa muodossa.
   if (!isset($formdata['email']) || !$formdata['email']) {
@@ -69,12 +59,11 @@ function lisaaTili($formdata) {
     // Salataan salasana myös samalla.
     $nimi = $formdata['nimi'];
     $email = $formdata['email'];
-    $discord = $formdata['discord'];
     $salasana = password_hash($formdata['salasana1'], PASSWORD_DEFAULT);
 
     // Lisätään henkilö tietokantaan. Jos lisäys onnistui,
     // tulee palautusarvona lisätyn henkilön id-tunniste.
-    $idhenkilo = lisaaHenkilo($nimi,$email,$discord,$salasana);
+    $idhenkilo = lisaaHenkilo($nimi,$email,$salasana);
 
     // Palautetaan JSON-tyyppinen taulukko, jossa:
     //  status   = Koodi, joka kertoo lisäyksen onnistumisen.
