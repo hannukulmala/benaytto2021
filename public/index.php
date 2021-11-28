@@ -12,22 +12,27 @@ $templates = new League\Plates\Engine(TEMPLATE_DIR);
 
 
 // selvitetään mitä sivua on kutsuttu ja suoritetaan vastaava käsittelijä
-if($request === '/' || $request === '/tapahtumat') {
-    require_once MODEL_DIR . 'tapahtuma.php';
-    $tapahtumat = haeTapahtumat();
-    echo $templates->render('tapahtumat', ['tapahtumat' => $tapahtumat]);
-} else if ($request === '/tapahtuma') {
-    require_once MODEL_DIR . 'tapahtuma.php';
-    $tapahtuma = haeTapahtuma($_GET['id']);
-    if($tapahtuma) {
-        echo $templates->render('tapahtuma', ['tapahtuma' => $tapahtuma]);
-    } else {
-        echo $templates->render('tapahtumanotfound');
+switch ($request) {
+    case '/':
+    case '/tapahtumat':
+    	require_once MODEL_DIR . 'tapahtuma.php';
+    	$tapahtumat = haeTapahtumat();
+    	echo $templates->render('tapahtumat',['tapahtumat' => $tapahtumat]);
+    	break;
+    case '/tapahtuma':
+    	require_once MODEL_DIR . 'tapahtuma.php';
+    	$tapahtuma = haeTapahtuma($_GET['id']);
+    	if ($tapahtuma) {
+    		echo $templates->render('tapahtuma',['tapahtuma' => $tapahtuma]);
+    	} else {
+    		echo $templates->render('tapahtumanotfound');
+    	}
+    	break;
+    case '/lisaa_tili':
+    	echo $templates->render('lisaa_tili');
+    	break;
+    default:
+    	echo $templates->render('notfound');
     }
-} else if($request === '/lisaa_tili') {
-    echo $templates->render('lisaa_tili');
-} else {
-    echo $templates->render('notfound');
-}
 ?>
 
