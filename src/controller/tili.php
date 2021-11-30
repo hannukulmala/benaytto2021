@@ -122,17 +122,17 @@ function lisaaTili($formdata, $baseurl='') {
 
 function lahetaVahvavain($email,$url) {
   $message = "Hei!\n\n" . 
-             "Olet rekisteröitynyt Lanify-palveluun tällä\n" . 
+             "Olet rekisteröitynyt Frisbeegolf seuran talkoo-palveluun tällä\n" . 
              "sähköpostiosoitteella. Klikkaamalla alla olevaa\n" . 
              "linkkiä vahvistat käyttämäsi sähköpostiosoitteen\n" .
-             "ja pääset käyttämään Lanify-palvelua.\n\n" . 
+             "ja pääset käyttämään talkootapahtuma-palvelua.\n\n" . 
              "$url\n\n" .
-             "Jos et ole rekisteröitynyt Lanify palveluun, niin\n" . 
+             "Jos et ole rekisteröitynyt talkootapahtuma-palveluun, niin\n" . 
              "silloin tämä sähköposti on tullut sinulle\n" .
              "vahingossa. Siinä tapauksessa ole hyvä ja\n" .
              "poista tämä viesti.\n\n".
-             "Terveisin, Lanify-palvelu";
-  return mail($email,'Lanify-tilin aktivointilinkki',$message);
+             "Terveisin, Frisbeegolf seuran johto";
+  return mail($email,'Frisbeegolfseuran talkootilin aktivointilinkki',$message);
 }
 
 
