@@ -1,7 +1,16 @@
 <?php
 session_start();
+
 //alustusskripti
 require_once '../src/init.php';
+
+// Haetaan kirjautuneen käyttäjän tiedot.
+if (isset($_SESSION['user'])) {
+    require_once MODEL_DIR . 'henkilo.php';
+    $loggeduser = haeHenkilo($_SESSION['user']);
+  } else {
+    $loggeduser = NULL;
+  }
 
 
 // urlin polun siistiminen
