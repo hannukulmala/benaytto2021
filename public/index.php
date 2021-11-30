@@ -11,8 +11,6 @@ if (isset($_SESSION['user'])) {
   } else {
     $loggeduser = NULL;
   }
-
-
 // urlin polun siistiminen
 $request = str_replace($config['urls']['baseUrl'], '', $_SERVER['REQUEST_URI']);
 $request = strtok($request, '?');
@@ -47,7 +45,7 @@ switch ($request) {
 			}
 			break;
 	case '/lisaa_tili':
-			if (isset($_POST['laheta'])) 
+			if (isset($_POST['laheta'])) {
 			  $formdata = cleanArrayData($_POST);
 			  require_once CONTROLLER_DIR . 'tili.php';
 			  $tulos = lisaaTili($formdata,$config['urls']['baseUrl']);
