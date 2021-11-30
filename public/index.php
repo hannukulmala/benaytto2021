@@ -1,4 +1,5 @@
 <?php
+session_start();
 //alustusskripti
 require_once '../src/init.php';
 
@@ -47,7 +48,8 @@ switch ($request) {
 				if (isset($_POST['laheta'])) {
 				  require_once CONTROLLER_DIR . 'kirjaudu.php';
 				  if (tarkistaKirjautuminen($_POST['email'],$_POST['salasana'])) {
-					echo "Kirjautuminen ok!";
+					$_SESSION['user'] = $_POST['email'];
+          			header("Location: " . $config['urls']['baseUrl']);
 				  } else {
 					echo $templates->render('kirjaudu', [ 'error' => ['virhe' => 'Väärä käyttäjätunnus tai salasana!']]);
 				  }
